@@ -10,13 +10,14 @@ import { toast } from "react-hot-toast";
 
 type CartContextType = {
   cartTotalQty: number;
+  cartTotalAmount: number;
   cartProducts: CartProductType[] | null;
   handleAddProductToCart: (product: CartProductType) => void;
   removeProductFromCart: (product: CartProductType) => void;
   handleCartQtyIncrease: (product: CartProductType) => void;
   handleCartQtyDecrease: (product: CartProductType) => void;
+  handleClearCart: () => void;
 };
-
 
 interface Props {
   [propsName: string]: any; //this means it can receive any type of prop
@@ -28,6 +29,10 @@ export const CartContextProvider = (props: Props) => {
   const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
     null
   );
+  const [cartTotalAmount, setCartTotalAmount] = useState(0);
+
+  console.log("Qty", cartTotalQty);
+  console.log("Total", cartTotalAmount);
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
@@ -122,6 +127,40 @@ export const CartContextProvider = (props: Props) => {
     [cartProducts]
   );
 
+  //clear CART
+  const handleClearCart = useCallback(() => {
+    setCartProducts(null);
+    setCartTotalQty(0);
+
+    localStorage.setItem("techHubCartItems", JSON.stringify(null));
+  }, [cartProducts]);
+
+  //Calculating the total amount and total quantity in CART
+  useEffect(() => {
+    const getTotals = () => {
+      if (cartProducts) {
+        const { total, qty } = cartProducts?.reduce(
+          (acc, item) => {
+            const itemTotal = item.price * item.quantity;
+
+            acc.total += itemTotal;
+            acc.qty += item.quantity;
+
+            return acc;
+          },
+          {
+            total: 0,
+            qty: 0,
+          }
+        );
+        setCartTotalQty(qty);
+        setCartTotalAmount(total);
+      }
+    };
+    //call the fxn
+    getTotals();
+  }, [cartProducts]);
+
   const value = {
     cartTotalQty,
     cartProducts,
@@ -129,6 +168,8 @@ export const CartContextProvider = (props: Props) => {
     removeProductFromCart,
     handleCartQtyIncrease,
     handleCartQtyDecrease,
+    handleClearCart,
+    cartTotalAmount,
   };
 
   return <CartContext.Provider value={value} {...props} />;

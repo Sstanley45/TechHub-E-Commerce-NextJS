@@ -41,7 +41,8 @@ const ProductDetailsComponent: React.FC<ProductDetailsProps> = ({
   const router = useRouter();
   const { cartTotalQty, handleAddProductToCart, cartProducts } = useCart();
   const [isProductInCart, setIsProductInCart] = useState(false);
-  // console.log(cartTotalQty);
+  //  console.log(product);
+
 
   const [cartProduct, setCartProduct] = useState({
     id: product.id,
@@ -53,6 +54,11 @@ const ProductDetailsComponent: React.FC<ProductDetailsProps> = ({
     quantity: 1,
     price: product.price,
   });
+
+ // console.log("My cart Products",cartProduct);
+  
+
+  
 
   //check if a product is in cart or not
   useEffect(() => {
@@ -81,7 +87,7 @@ const ProductDetailsComponent: React.FC<ProductDetailsProps> = ({
   );
 
   // console.log(cartProduct);
-  console.log(cartProducts);
+  //console.log(cartProducts);
 
   const handleQtyIncrease = useCallback(() => {
     if (cartProduct.quantity === 99) return;
