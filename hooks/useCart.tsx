@@ -31,8 +31,8 @@ export const CartContextProvider = (props: Props) => {
   );
   const [cartTotalAmount, setCartTotalAmount] = useState(0);
 
-  console.log("Qty", cartTotalQty);
-  console.log("Total", cartTotalAmount);
+  // console.log("Qty", cartTotalQty);
+  // console.log("Total", cartTotalAmount);
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
