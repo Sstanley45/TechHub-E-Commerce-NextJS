@@ -31,8 +31,8 @@ const LoginForm = () => {
       <Heading title="Sign In to Tech Hub" />
       <Button
         label="Continue with Google"
-        icon={AiOutlineGoogle}
-        outline={false}
+        icon={AiOutlineGoogle} 
+        outline
         onClick={() => {}}
       />
       <hr className="bg-slate-300 w-full h-px" />
