@@ -7,8 +7,15 @@ import Link from "next/link";
 import MenuItems from "./MenuItems";
 import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
+import { SafeUser } from "@/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser: SafeUser | null;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  // console.log("current user in menu user",currentUser);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -35,7 +42,7 @@ const UserMenu = () => {
               text-slate-700
               "
         >
-          <Avatar />
+          <Avatar src={currentUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (
@@ -54,31 +61,34 @@ const UserMenu = () => {
                   cursor-pointer
                   "
           >
-            <div>
-              <Link href="/orders">
-                <MenuItems onClick={toggleOpen}>Your Orders </MenuItems>
-              </Link>
-              <Link href="/admin">
-                <MenuItems onClick={toggleOpen}>Admin Dashboard </MenuItems>
-              </Link>
-              <MenuItems
-                onClick={() => {
-                  toggleOpen();
-                  signOut();
-                }}
-              >
-                Log Out
-              </MenuItems>
-            </div>
-
-            <div>
-              <Link href="/login">
-                <MenuItems onClick={toggleOpen}>Login </MenuItems>
-              </Link>
-              <Link href="/register"> 
-                <MenuItems onClick={toggleOpen}> Register</MenuItems>
-              </Link>
-            </div>
+            {currentUser ? (
+              <div>
+                <Link href="/orders">
+                  <MenuItems onClick={toggleOpen}>Your Orders </MenuItems>
+                </Link>
+                <Link href="/admin">
+                  <MenuItems onClick={toggleOpen}>Admin Dashboard </MenuItems>
+                </Link>
+                <hr />
+                <MenuItems
+                  onClick={() => {
+                    toggleOpen();
+                    signOut();
+                  }}
+                >
+                  Log Out
+                </MenuItems>
+              </div>
+            ) : (
+              <div>
+                <Link href="/login">
+                  <MenuItems onClick={toggleOpen}>Login </MenuItems>
+                </Link>
+                <Link href="/register">
+                  <MenuItems onClick={toggleOpen}> Register</MenuItems>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -86,6 +96,5 @@ const UserMenu = () => {
     </>
   );
 };
-
 
 export default UserMenu;
