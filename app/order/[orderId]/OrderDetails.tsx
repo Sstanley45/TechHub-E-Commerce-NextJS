@@ -88,7 +88,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
 
         {order.products &&
           order.products.map((item) => {
-              return <OrderItem key={item.id} item ={ item}/>;
+            return <OrderItem key={item.id} item={item} />;
           })}
       </div>
     </div>

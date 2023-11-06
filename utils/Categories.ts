@@ -1,7 +1,7 @@
 import { AiFillPhone, AiOutlineDesktop, AiOutlineLaptop } from "react-icons/ai";
 import { MdOutlineKeyboard, MdStorefront, MdTv } from "react-icons/md";
 
-export const Categories = [
+export const Categories = [ 
   {
     label: "All",
     icon: MdStorefront,

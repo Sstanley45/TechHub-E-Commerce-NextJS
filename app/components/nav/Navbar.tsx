@@ -4,12 +4,14 @@ import { Redressed } from "next/font/google";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
+import CategoriesNav from "./CategoriesNav";
+import SearchBar from "./SearchBar";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
- // console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm">
@@ -21,7 +23,9 @@ const Navbar = async () => {
                 Tech~Hub
               </h1>
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <div>
                 <CartCount />
@@ -34,6 +38,7 @@ const Navbar = async () => {
           </div>
         </Container>
       </div>
+      <CategoriesNav />
     </div>
   );
 };

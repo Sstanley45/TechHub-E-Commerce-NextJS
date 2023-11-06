@@ -7,7 +7,9 @@ export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
   //restrict normal user from adding a product as admin
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!currentUser) return NextResponse.error();
+
+  if (currentUser.role !== "ADMIN") {
     return NextResponse.error();
   }
 

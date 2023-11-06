@@ -18,7 +18,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
             fill
             src={item.selectedImg.image}
             alt={item.name}
-            className="object-contain"
+            className="object-contain" 
           />
         </div>
         <div className="flex flex-col gap-1">

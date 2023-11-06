@@ -6,16 +6,13 @@ import { formatPrice } from "@/utils/formatPrice";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-
-
-
 interface ProductCardProps {
   data: any;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const router = useRouter();
-  // console.log(data);
+ // console.log(data);
 
   //find the average rating for a product using the reduce Js Method
   const productRating =
@@ -56,9 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           />
         </div>
         <div className="mt-4">{truncateText(data.name)}</div>
-        <div>
-          <Rating value={productRating} readOnly />
-        </div>
+        <div>{/* <Rating value={productRating} readOnly /> */}</div>
         <div>{data.reviews.length} reviews</div>
         <div className="font-semibold">{formatPrice(data.price)}</div>
       </div>
@@ -66,4 +61,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   );
 };
 
-export default ProductCard; 
+export default ProductCard;
