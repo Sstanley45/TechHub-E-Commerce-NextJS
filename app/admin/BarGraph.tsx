@@ -24,9 +24,33 @@ type GraphData = {
 };
 
 const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
-  return <div>BarGraph</div>;
+  const labels = data.map((item) => item.day);
+  const amounts = data.map((item) => item.totalAmount);
+
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Sale Amount",
+        data: amounts,
+        backgroundColor: "rgb(75,192,192,0.6)",
+        borderColor: "rgb(75,192,192,1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return <Bar data={chartData} options={options}></Bar>;
 };
 
 export default BarGraph;
