@@ -19,7 +19,7 @@ const Footer = () => {
             <Link href="#">Laptops</Link>
             <Link href="#">Desktops</Link>
             <Link href="#">Watches</Link>
-            <Link href="#">Tv's</Link>
+            <Link href="#">TVs</Link>
             <Link href="#">Accessories</Link>
           </FooterList>
           <FooterList>
@@ -38,7 +38,7 @@ const Footer = () => {
               selection of phones, laptops, Tvs and watches.
             </p>
             <p>
-              &copy;
+              &#169;
               {new Date().getFullYear()} Tech~Hub | All rights reserved
             </p>
           </div>
