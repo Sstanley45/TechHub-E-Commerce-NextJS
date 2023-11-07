@@ -13,7 +13,7 @@ interface OrderDetailsProps {
   order: Order;
 }
 
-const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
+const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {  
   return (
     <div className="max-w-[1150px] m-auto flex flex-col gap-2">
       <div className="mt-8">

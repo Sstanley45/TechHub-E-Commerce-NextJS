@@ -8,7 +8,7 @@ const Orders = async () => {
   const currentUser = await getCurrentUser();
 
   //check if we have user or if user has admin role
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!currentUser) {
     return <NullData title="Oops! Access denied" />;
   }
 
