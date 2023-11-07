@@ -27,7 +27,7 @@ const Footer = () => {
             <Link href="#">Services</Link>
             <Link href="#">Contact</Link>
             <Link href="#">Shipping Policy</Link>
-            <Link href="#">Return & Exchanges</Link>
+            <Link href="#">Return and Exchanges</Link>
             <Link href="#">FAQs</Link>
           </FooterList>
           <div className="w-full md:w-1/3 md: mb-0">
