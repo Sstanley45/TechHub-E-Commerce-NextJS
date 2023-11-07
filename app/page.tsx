@@ -1,3 +1,5 @@
+export const revalidate = 0; //to avoid issues when generating pages after deploying
+
 import Container from "./components/Container";
 import HomeBunner from "./components/HomeBunner";
 // import { products } from "@/utils/products";
@@ -15,7 +17,6 @@ export default async function Home({ searchParams }: HomeProps) {
 
   const productsFromDB = await getProducts(searchParams);
   //console.log("DB products>>>>>", productsFromDB);
-
 
   function shuffleArray(array: any) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -35,7 +36,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
           {shuffledProduct.map((product: any) => {
-            return <ProductCard data={product} />;
+            return <ProductCard data={product} key={product.id} />;
           })}
         </div>
       </Container>

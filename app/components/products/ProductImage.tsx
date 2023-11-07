@@ -57,6 +57,7 @@ const ProductImage: React.FC<ProductImageProps> = ({
                 src={image.image}
                 alt={image.color}
                 fill
+                sizes={"35"}
                 className="object-contain"
               />
             </div>

@@ -43,7 +43,6 @@ const ProductDetailsComponent: React.FC<ProductDetailsProps> = ({
   const [isProductInCart, setIsProductInCart] = useState(false);
   //  console.log(product);
 
-
   const [cartProduct, setCartProduct] = useState({
     id: product.id,
     name: product.name,
@@ -55,10 +54,7 @@ const ProductDetailsComponent: React.FC<ProductDetailsProps> = ({
     price: product.price,
   });
 
- // console.log("My cart Products",cartProduct);
-  
-
-  
+  // console.log("My cart Products",cartProduct);
 
   //check if a product is in cart or not
   useEffect(() => {

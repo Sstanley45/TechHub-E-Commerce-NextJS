@@ -23,7 +23,7 @@ const calculateOrderAmount = (items: CartProductType[]) => {
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+     return NextResponse.error();   
   }
   const { items, payment_intent_id } = await request.json();
   const total = calculateOrderAmount(items) * 100;
@@ -69,10 +69,7 @@ export async function POST(request: Request) {
       ]);
 
       if (!existing_order) {
-        return NextResponse.json(
-          { error: "Invalid payment Intent" },
-          { status: 400 }
-        );
+       return NextResponse.error();   
       }
       return NextResponse.json({ paymentIntent: updated_Intent });
     }
@@ -91,4 +88,6 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ paymentIntent });
   }
+
+  return NextResponse.error()   
 }
